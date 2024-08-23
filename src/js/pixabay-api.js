@@ -14,6 +14,5 @@ export const data = (searchedValue, pages) => {
       per_page: 15,
     },
   };
-
   return axios.get('api/', axiosOptions);
 };
