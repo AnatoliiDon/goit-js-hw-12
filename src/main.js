@@ -59,10 +59,20 @@ const onFormSbm = async event => {
     captionsData: 'alt',
     captionDelay: 250,
   }).refresh();
-  loadMoreBtnEl.classList.remove('is-hidden');
 
   const galleryCardEl = gallery.querySelector('li');
   cardHeight = galleryCardEl.getBoundingClientRect().height;
+
+  countElLi = document.querySelectorAll('.gallery-card');
+  if (response.data.totalHits === countElLi.length) {
+    iziToast.show({
+      message: `That's all we could find on your request`,
+      color: 'yellow',
+      position: 'topRight',
+    });
+    return;
+  }
+  loadMoreBtnEl.classList.remove('is-hidden');
 };
 
 const loadMorePhoto = async event => {
