@@ -14,6 +14,12 @@ let page = 1;
 let cardHeight = 0;
 let countElLi = 0;
 
+const galleryCreate = new SimpleLightbox('.gallery-link', {
+  captions: true,
+  captionsData: 'alt',
+  captionDelay: 250,
+});
+
 const onFormSbm = async event => {
   try {
     event.preventDefault();
@@ -55,11 +61,8 @@ const onFormSbm = async event => {
     sbmForm.reset();
     loader.classList.remove('is-open');
     gallery.innerHTML = galleryCardsTemplate;
-    new SimpleLightbox('.gallery-link', {
-      captions: true,
-      captionsData: 'alt',
-      captionDelay: 250,
-    }).refresh();
+
+    galleryCreate.refresh();
 
     const galleryCardEl = gallery.querySelector('li');
     cardHeight = galleryCardEl.getBoundingClientRect().height;
@@ -89,11 +92,7 @@ const loadMorePhoto = async event => {
       .join('');
     gallery.insertAdjacentHTML('beforeend', galleryCardsTemplate);
 
-    new SimpleLightbox('.gallery-link', {
-      captions: true,
-      captionsData: 'alt',
-      captionDelay: 250,
-    }).refresh();
+    galleryCreate.refresh();
 
     loader.classList.remove('is-open');
     scrollBy({
